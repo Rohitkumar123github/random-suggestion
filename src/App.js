@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { useState } from "react";
 function App() {
+  const [suggestions, setSuggestions] = useState("");
+  const [clicked, setClicked] = useState(false);
+  const handleClick = async () => {
+    const res = await fetch("https://www.boredapi.com/api/activity");
+    const data = await res.json();
+    console.log(data);
+    setClicked(true);
+    return setSuggestions(data);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>I'm Bored!...What should I do ???</h1>
+      <button className="btn" onClick={handleClick}>
+        Need Random Suggestions🥺?
+      </button>
+      {clicked ? (
+        <>
+          <h2 style={{color:"teal", fontSize:"5rem"}}>You can do {suggestions.activity}</h2>
+        </>
+      ) : null}
     </div>
   );
 }
