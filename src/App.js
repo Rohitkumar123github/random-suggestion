@@ -12,13 +12,16 @@ function App() {
 
   return (
     <div className="App">
-      <h1>I'm Bored!...What should I do ???</h1>
+      <h1>I'm <span>Bored</span>!...What should I do ???</h1>
       <button className="btn" onClick={handleClick}>
-        Need Random Suggestions🥺?
+        Need Random Suggestions🤔?
       </button>
       {clicked ? (
         <>
-          <h2 style={{color:"teal", fontSize:"5rem"}}>You can do {suggestions.activity}</h2>
+        <div className="suggestions">
+        <h2 style={{color:"teal", fontSize:"5rem"}}>You can  {suggestions.activity}</h2>
+        </div>
+         
         </>
       ) : null}
     </div>
